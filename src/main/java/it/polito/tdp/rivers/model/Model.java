@@ -60,9 +60,9 @@ public class Model {
 		
 		List<Double> capacity = new ArrayList<Double>();
 		
-		double Q = convertM2SecToM2Day(k * 30 * river.getFlowAvg());
+		double Q = convertM3SecToM3Day(k * 30 * river.getFlowAvg());
 		double C = Q / 2;
-		double fOutMin = convertM2SecToM2Day(0.8 * river.getFlowAvg());
+		double fOutMin = convertM3SecToM3Day(0.8 * river.getFlowAvg());
 		int numberOfDays = 0;
 
 		System.out.println("Q: " + Q);
@@ -80,10 +80,10 @@ public class Model {
 			}
 
 			System.out.println("fOut: " + fOut);
-			System.out.println("fIn: " + convertM2SecToM2Day(flow.getFlow()));
+			System.out.println("fIn: " + convertM3SecToM3Day(flow.getFlow()));
 
 			// Aggiungo fIn a C
-			C += convertM2SecToM2Day(flow.getFlow());
+			C += convertM3SecToM3Day(flow.getFlow());
 
 			// Se C è maggiore della capacità massima
 			if (C > Q) {
@@ -118,11 +118,11 @@ public class Model {
 		return new SimulationResult(CAvg, numberOfDays);
 	}
 	
-	public double convertM2SecToM2Day(double input) {
+	public double convertM3SecToM3Day(double input) {
 		return input * 60 * 60 * 24;
 	}
 
-	public double convertM2DayToM2Sec(double input) {
+	public double convertM3DayToM3Sec(double input) {
 		return input / 60 / 60 / 24;
 	}
 
