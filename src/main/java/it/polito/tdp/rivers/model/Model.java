@@ -60,7 +60,7 @@ public class Model {
 		
 		List<Double> capacity = new ArrayList<Double>();
 		
-		double Q = convertM3SecToM3Day(k * 30 * river.getFlowAvg());
+		double Q = k * 30 * convertM3SecToM3Day(river.getFlowAvg());
 		double C = Q / 2;
 		double fOutMin = convertM3SecToM3Day(0.8 * river.getFlowAvg());
 		int numberOfDays = 0;
