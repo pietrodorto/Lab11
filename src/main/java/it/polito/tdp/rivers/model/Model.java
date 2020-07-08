@@ -14,11 +14,12 @@ import it.polito.tdp.rivers.db.RiversDAO;
 		RiversDAO dao;
 		River river;
 		
-		List<Flow> flows ;
+
+		PriorityQueue<Flow> queue ;
 		public Model() {
 			
 				dao = new RiversDAO();
-				flows = new LinkedList<Flow>();
+				
 				
 		 
 		}
@@ -41,14 +42,23 @@ import it.polito.tdp.rivers.db.RiversDAO;
 		 
 		 public SimulationResult Simula(River r,int k) {
 			
-			 flows = getAllFlowByRiver(r);
+			 SimulationResult sResult;
+			 
+			 queue = new PriorityQueue<Flow>();
+			 queue.addAll(river.getFlows());
+			 
 			 double Q = k*(r.getFlowAvg()*60*60*24)*30 ;
 			 double C = Q/2;
 			 
 			 PriorityQueue<Flow> queue = new PriorityQueue<Flow>();
 			 
+			 while(!this.queue.isEmpty()) {
+				 
+				 
+				 
+			 }
 			 
-			 return ;
+			 return sResult;
 		}
 	}
 	
