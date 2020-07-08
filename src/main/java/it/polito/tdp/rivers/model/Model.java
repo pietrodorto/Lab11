@@ -49,10 +49,24 @@ import it.polito.tdp.rivers.db.RiversDAO;
 			 
 			 double Q = k*(r.getFlowAvg()*60*60*24)*30 ;
 			 double C = Q/2;
+			 double fOutMin = 0.8 * r.getFlowAvg()*60*60*24;
 			 
 			 PriorityQueue<Flow> queue = new PriorityQueue<Flow>();
 			 
+			 List<Double> capacity = new LinkedList<Double>();
+			 int numday = 0;
+			 
 			 while(!this.queue.isEmpty()) {
+				 
+				 Flow flow = queue.poll();
+				 
+				 if(flow.getFlow()>fOutMin){
+					 
+					 C += flow.getFlow()-fOutMin;
+					 
+				 }
+				 
+				 
 				 
 				 
 				 
