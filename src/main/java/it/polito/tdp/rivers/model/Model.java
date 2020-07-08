@@ -1,23 +1,25 @@
 package it.polito.tdp.rivers.model;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.PriorityQueue;
 
 import it.polito.tdp.rivers.db.RiversDAO;
 
 	
 	public class Model {
 		
-		TreeMap<Integer, River> riversMap;
 		RiversDAO dao;
 		River river;
 		
+		List<Flow> flows ;
 		public Model() {
 			
 				dao = new RiversDAO();
-				riversMap = new TreeMap<Integer, River>();
+				flows = new LinkedList<Flow>();
+				
 		 
 		}
 	
@@ -25,8 +27,8 @@ import it.polito.tdp.rivers.db.RiversDAO;
 			return dao.getAllRivers();
 		}
 		
-		public Map<LocalDate, Flow> getAllFlowByRiver(River river){
-			 return dao.getAllFlowByRiver(river);
+		public List<Flow> getAllFlowByRiver(River river){
+			 return dao.getAllFlowsByRiver(river);
 		 }
 		 
 		 public  List<Flow> getAllFlow(){
@@ -36,4 +38,18 @@ import it.polito.tdp.rivers.db.RiversDAO;
 		 public  InfoRiver getAllInfo(River river) {
 			 return dao.getAllInfo(river);
 		 }
+		 
+		 public SimulationResult Simula(River r,int k) {
+			
+			 flows = getAllFlowByRiver(r);
+			 double Q = k*(r.getFlowAvg()*60*60*24)*30 ;
+			 double C = Q/2;
+			 
+			 PriorityQueue<Flow> queue = new PriorityQueue<Flow>();
+			 
+			 
+			 return ;
+		}
 	}
+	
+

@@ -43,13 +43,13 @@ public class RiversDAO {
 		return rivers;
 	}
 	
-	public Map<LocalDate, Flow> getAllFlowByRiver(River river) {
+	public List<Flow> getAllFlowsByRiver(River river) {
 		
 		final String sql = "SELECT *\n" + 
 				"FROM flow AS f\n" + 
 				"WHERE f.river = ?";
 
-		Map<LocalDate, Flow> flowsbyRiver = new TreeMap<LocalDate,Flow>();
+		List<Flow> flowsbyRiver = new LinkedList<Flow>();
 
 		try {
 			Connection conn = DBConnect.getConnection();
@@ -60,7 +60,7 @@ public class RiversDAO {
 			while (res.next()) {
 				Flow f = new Flow(res.getDate(1).toLocalDate(),res.getFloat(2),river);
 				river.getFlows().add(f);
-				flowsbyRiver.put(f.getDay(),f);
+				flowsbyRiver.add(f);
 			}
 
 			conn.close();

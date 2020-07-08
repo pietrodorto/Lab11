@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import it.polito.tdp.rivers.model.InfoRiver;
 import it.polito.tdp.rivers.model.Model;
 import it.polito.tdp.rivers.model.River;
+import it.polito.tdp.rivers.model.SimulationResult;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -72,6 +73,33 @@ public class FXMLController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	
+    }
+    
+
+    @FXML
+    void doSimula(ActionEvent event) {
+    	
+    	txtResult.clear();
+    	
+    	try {
+    		River river = boxRiver.getValue();
+    		int k = Integer.getInteger(txtK.getText());
+    		
+    		SimulationResult sResult= model.Simula(river, k);
+    		
+    		txtResult.appendText(Integer.toString(sResult.getNumDisservizio())+"\n");
+    		txtResult.appendText(Double.toString(sResult.getOccMedia()));
+    		
+    		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
     	
     }
 
